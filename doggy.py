@@ -11,7 +11,6 @@ processor = AutoImageProcessor.from_pretrained(model_name)
 model = AutoModelForImageClassification.from_pretrained(model_name)
 
 # Load an image (you can use your own image path)
-url = "uncles_dog.jpg"
 image = Image.open("uncles_dog.jpg")
 
 # Preprocess image
