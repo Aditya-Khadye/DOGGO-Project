@@ -11,7 +11,6 @@ if sys.platform == "darwin":
         print(f"Failed to set event loop policy: {e}")
 
 # Load model once
-@st.cache_resource
 def get_model():
     return load_model()
 

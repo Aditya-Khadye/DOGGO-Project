@@ -6,7 +6,7 @@ import torch
 def load_model(model_name="microsoft/resnet-50"):
     processor = AutoImageProcessor.from_pretrained(model_name)
     model = AutoModelForImageClassification.from_pretrained(model_name)
-    labels = model.config.id2label
+    labels = model.config.id2label 
     return processor, model, labels
 
 # Predict label from image
@@ -20,4 +20,5 @@ def predict(image: Image.Image, processor, model, labels):
     logits = outputs.logits
     predicted_class_idx = logits.argmax(-1).item()
     predicted_label = labels[predicted_class_idx]
+
     return predicted_label
