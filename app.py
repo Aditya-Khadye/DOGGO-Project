@@ -14,17 +14,18 @@ if sys.platform == "darwin":
 def get_model():
     return load_model()
 
-st.title("🐶 Dog Image Classifier")
+st.title("🐶 Dog Breed Classifier")
 
-# Upload image
-uploaded_file = st.file_uploader("Upload an image of a dog", type=["jpg", "jpeg", "png"])
+uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
 
 if uploaded_file is not None:
-    image = Image.open(uploaded_file)
-    st.image(image, caption="Uploaded Image", use_column_width=True)
+    img = Image.open(uploaded_file)
+    st.image(img, caption='Uploaded Image', use_column_width=True)
 
-    # Load model and make prediction
     processor, model, labels = get_model()
-    predicted_label = predict(image, processor, model, labels)
+    label, is_dog = predict(img, processor, model, labels)
 
-    st.markdown(f"### 🧠 Predicted Class: **{predicted_label}**")
+    if is_dog:
+        st.success(f"✅ This is a dog! Breed: {label}")
+    else:
+        st.warning(f"❌ This does not appear to be a dog. Predicted: {label}")
